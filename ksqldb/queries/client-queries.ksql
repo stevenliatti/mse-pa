@@ -1,0 +1,36 @@
+-- SET 'auto.offset.reset' = 'earliest';
+
+CREATE STREAM clients (id INT KEY, firstname STRING, lastname STRING, email STRING, op STRING) WITH (kafka_topic='clients', format = 'json', partitions = 1);
+CREATE TABLE client (id INT PRIMARY KEY, firstname STRING, lastname STRING, email STRING) WITH (kafka_topic='clients', format = 'json');
+
+INSERT INTO clients VALUES (1, 'Grover', 'MacQuarrie', 'gmacquarrie0@ezinearticles.com', 'c');
+INSERT INTO clients VALUES (2, 'Cornie', 'Chat', 'cchat1@sciencedaily.com', 'c');
+INSERT INTO clients VALUES (3, 'Ame', 'Jurczik', 'ajurczik2@bbc.co.uk', 'c');
+INSERT INTO clients VALUES (4, 'Margery', 'Dorn', 'mdorn3@plala.or.jp', 'c');
+INSERT INTO clients VALUES (5, 'Zabrina', 'Molineaux', 'zmolineaux4@who.int', 'c');
+INSERT INTO clients VALUES (6, 'Karoline', 'Boulds', 'kboulds5@webs.com', 'c');
+INSERT INTO clients VALUES (7, 'Adi', 'Klaaassen', 'aklaaassen6@microsoft.com', 'c');
+INSERT INTO clients VALUES (8, 'Dewitt', 'Lamerton', 'dlamerton7@plala.or.jp', 'c');
+INSERT INTO clients VALUES (9, 'Beatrix', 'Reavell', 'breavell8@usatoday.com', 'c');
+INSERT INTO clients VALUES (10, 'Randolph', 'Bowgen', 'rbowgen9@jalbum.net', 'c');
+INSERT INTO clients VALUES (11, 'Farly', 'Licquorish', 'flicquorisha@t-online.de', 'c');
+INSERT INTO clients VALUES (12, 'Shaina', 'Mirrlees', 'smirrleesb@symantec.com', 'c');
+INSERT INTO clients VALUES (13, 'Oralla', 'Shelford', 'oshelfordc@army.mil', 'c');
+INSERT INTO clients VALUES (14, 'Nichole', 'Ondrak', 'nondrakd@nasa.gov', 'c');
+INSERT INTO clients VALUES (15, 'Ronny', 'Rosencwaig', 'rrosencwaige@google.de', 'c');
+INSERT INTO clients VALUES (16, 'Bob', 'Lampion', 'bob@mail.com', 'c');
+
+-- CREATE TABLE QUERYABLE_CLIENT AS SELECT * FROM CLIENT;
+
+
+
+
+-- PRINT 'clients' FROM BEGINNING;
+-- SELECT * FROM clients EMIT CHANGES;
+-- SELECT * FROM client EMIT CHANGES;
+
+-- SELECT *, rowtime FROM clients WHERE id = 16 EMIT CHANGES;
+-- SELECT * FROM QUERYABLE_CLIENT WHERE id = 16;
+
+
+-- SELECT * FROM clients WHERE SUBSTRING(firstname, 1, 1) = 'A' EMIT CHANGES;

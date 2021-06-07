@@ -1,0 +1,19 @@
+CREATE STREAM flights (id INT KEY, departure TIMESTAMP, op STRING) WITH (kafka_topic='flights', format = 'json', partitions = 1);
+CREATE TABLE flight (id INT PRIMARY KEY, departure TIMESTAMP) WITH (kafka_topic='flights', format = 'json');
+
+INSERT INTO flights VALUES (1, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (2, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (3, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (4, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (5, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (6, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (7, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (8, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (9, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (10, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (11, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (12, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (13, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (14, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (15, '2021-05-26T14:30:00', 'c');
+INSERT INTO flights VALUES (16, '2021-05-26T14:30:00', 'c');

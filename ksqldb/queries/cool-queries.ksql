@@ -1,0 +1,8 @@
+-- Fields detection under 30 seconds
+SELECT id, latest_by_offset(firstname) AS last_firstname, latest_by_offset(lastname) AS last_lastname, latest_by_offset(email) AS last_email, count(*) AS c, WINDOWSTART, WINDOWEND FROM clients WINDOW TUMBLING (SIZE 30 SECONDS, RETENTION 1 DAYS) GROUP BY id HAVING count(*) >= 3 EMIT CHANGES;
+
+-- Monitor changes in seat_number on a 30 seconds window
+SELECT flight_id, client_id, latest_by_offset(seat_number) AS seat, count(*) AS c, WINDOWSTART, WINDOWEND FROM bookings WINDOW TUMBLING (SIZE 30 SECONDS, RETENTION 1 DAYS) GROUP BY flight_id, client_id HAVING count(*) >= 3 EMIT CHANGES;
+
+-- Check if bookings are update 1 day before departure
+SELECT *, (UNIX_TIMESTAMP(flight.departure) - UNIX_TIMESTAMP()) AS diff FROM bookings JOIN flight ON bookings.flight_id = flight.id WHERE bookings.op = 'u' AND (UNIX_TIMESTAMP(flight.departure) - UNIX_TIMESTAMP()) <= (1000 * 3600 * 24) EMIT CHANGES;
